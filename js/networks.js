@@ -17,6 +17,13 @@ async function getAllNetworks() {
   }
 }
 
+function convertObjetcToQueryString(params) {
+  const queryString = Object.keys(params)
+    .map((key) => `${key}=${params[key]}`)
+    .join('&')
+  return queryString
+}
+
 let networksList = null
 
 function fillDatanetworks(networks) {
@@ -24,7 +31,7 @@ function fillDatanetworks(networks) {
   // sentido para este item
   networks = JSON.parse(JSON.stringify(networks))
   networks.forEach((item) => {
-    item.link = `datasource?id=${item.id}`
+    item.link = `details.html?${convertObjetcToQueryString(item)}`
   })
   const options = {
     valueNames: [

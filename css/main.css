@@ -106,3 +106,20 @@ input, button, select{
   background-color: var(--primary-color);
   border-color: var(--primary-color);
 }
+
+
+.network-details .row{
+  display: flex;
+  padding: 2px 5px;
+}
+.network-details .row:nth-child(odd) {
+  background: #eee;
+}
+
+.network-details .row .label{
+  width: 15rem;
+}
+
+.text-center{
+  text-align: center;
+}
