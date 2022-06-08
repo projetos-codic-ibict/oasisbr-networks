@@ -1,5 +1,5 @@
-
 const REMOTE_API_URL = 'http://localhost:3000/api/v1'
+let networksList = null
 
 function formatNumber(value) {
   const formatPtBr = new Intl.NumberFormat('pt-BR')
@@ -24,9 +24,34 @@ function convertObjetcToQueryString(params) {
   return queryString
 }
 
-let networksList = null
 
-function fillDatanetworks(networks) {
+function fillIndicatorsByDocumentType(indicators) {
+  const sidebarElement = document.querySelector('#side-collapse-format')
+  if (indicators && sidebarElement) {
+    indicators.forEach((indicator) => {
+      const item = `<a onclick="filterNetworks('${indicator.name
+        }')"  class="facet js-facet-item facetAND">
+    <span class="text">
+      <span class="facet-value">${indicator.name}</span>
+    </span>
+    <span class="badge"> ${formatNumber(indicator.value)} </span>
+  </a>`
+      sidebarElement.innerHTML = sidebarElement.innerHTML + item
+    })
+  }
+}
+
+
+function showTotal(total) {
+  const badgeTotal = document.querySelector('.badge-total')
+  if (badgeTotal) {
+    badgeTotal.innerHTML = formatNumber(total)
+    showTotalFind(total)
+  }
+}
+
+
+function fillDataNetworks(networks) {
   // remover referência para o array original, tem alterações aqui que só faz
   // sentido para este item
   networks = JSON.parse(JSON.stringify(networks))
@@ -157,11 +182,23 @@ function ConvertToCSV(objArray) {
   return csv
 }
 
+async function getIndicatorsByDocumentType() {
+  try {
+    const response = await fetch(`${REMOTE_API_URL}/indicators?type=sourceType`)
+    const indicators = await response.json()
+    return indicators
+  } catch (errors) {
+    console.error(errors)
+  }
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
+  const indicators = await getIndicatorsByDocumentType()
+  fillIndicatorsByDocumentType(indicators)
   const allNetworks = await getAllNetworks()
   showTotalFind(allNetworks.length)
-  fillDatanetworks(allNetworks)
+  showTotal(allNetworks.length)
+  fillDataNetworks(allNetworks)
   sortDatanetworks()
   watchingUpdateOnList()
   exportsCSV(allNetworks)

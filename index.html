@@ -5,40 +5,61 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Networks</title>
+  <title>Data Sources</title>
   <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-  <h3 class="text-center">Networks</h3>
-  <div id="networks" class="networks">
-    <p>
-      Total de fontes: <span class="total"></span>
-    </p>
-    <div class="flex flex-space-between">
-      <input class="search" placeholder="Search">
-      <div class="networks-sort flex">
-        <label for="sort-select">
-          Sort
-        </label>
-        <select id="sort-select">
-          <option value="asc">
-            Ascending
-          </option>
-          <option value="desc">
-            Descending
-          </option>
-        </select>
+  <h3 class="text-center">Data Sources</h3>
+  <div class="networks-container">
+    <div class="sidebar" id="search-sidebar">
+      <div class="facet-group" id="side-panel-format">
+        <button class="title" aria-expanded="true">
+          Data Sources
+        </button>
+        <div id="side-collapse-format" class="collapse in" aria-expanded="true">
+          <a id="list-all" class="facet js-facet-item facetAND">
+            <span class="text">
+
+              <span class="facet-value">
+                All data sources
+              </span>
+            </span>
+            <span class="badge badge-total"> </span>
+          </a>
+        </div>
       </div>
-      <button class="export">
-        Export to CSV
-      </button>
     </div>
 
-    <ol class="list" style="counter-reset: item 0">
-    </ol>
+    <div id="networks" class="networks">
+      <p>
+        Data sources found: <span class="total"></span>
+      </p>
+      <div class="flex flex-space-between">
+        <input class="search" placeholder="Search">
+        <div class="networks-sort flex">
+          <label for="sort-select">
+            Sort
+          </label>
+          <select id="sort-select">
+            <option value="asc">
+              Ascending
+            </option>
+            <option value="desc">
+              Descending
+            </option>
+          </select>
+        </div>
+        <button class="export">
+          Export to CSV
+        </button>
+      </div>
 
-    <ul class="pagination"></ul>
+      <ol class="list" style="counter-reset: item 0">
+      </ol>
+
+      <ul class="pagination"></ul>
+    </div>
   </div>
 </body>
 <script src="js/list.min.js"></script>

@@ -3,20 +3,35 @@
   --link-color: #12538B;
 }
 
+*{
+  box-sizing: border-box;
+}
+
 a{
   color: var(--link-color);
+  cursor: pointer;
+}
+
+.networks-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  column-gap: 1rem;
+}
+
+.networks-container .networks{
+  width: 100%;
+  max-width: 700px;
 }
 
 input, button, select{
-  padding: 5px 2px;
-  border-radius: 5px;
+  padding: 5px;
   border: 1px solid #ccc;
   outline: transparent;
 }
 
-.networks{
-  max-width: 700px;
-  margin: 0 auto;
+.networks-container b{
+  font-weight: 500;
 }
 
 .networks ol {
@@ -105,6 +120,7 @@ input, button, select{
   min-width: 7rem;
   background-color: var(--primary-color);
   border-color: var(--primary-color);
+  color: #fff;
 }
 
 
@@ -122,4 +138,71 @@ input, button, select{
 
 .text-center{
   text-align: center;
+}
+
+.networks-container .facet-group .title {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.networks-container .collapse.in {
+  display: block;
+}
+
+.networks-container .facet-group .title {
+  display: block;
+  padding-right: 8px;
+  border: 1px solid #ddd;
+  font-weight: 700;
+  text-align: inherit;
+}
+
+.networks-container .facet, .networks-container .facet-group .title {
+  display: flex;
+  padding: 0.5rem;
+  width: 100%;
+  line-height: 1.5rem;
+}
+
+
+.networks-container .facet-group .collapse,
+.networks-container .facet-group .collapsing,
+.networks-container .facet-group>.facet {
+  position: relative;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+
+.networks-container .badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #595959;
+  border-radius: 10px;
+}
+
+.networks-container .facet .badge, 
+.networks-container  .facet-group .title .badge{
+  flex-shrink: 0;
+  max-height: 19px;
+  line-height: 1.2;
+  vertical-align: baseline;
+}
+
+
+.networks-container .facet .text, 
+.networks-container  .facet-group .title .text{
+  flex-grow: 1;
+}
+
+.networks-container .facet-group .facet {
+  border-bottom: 1px solid #ddd;
 }
